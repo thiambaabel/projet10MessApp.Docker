@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require("path");
 const app = express();
-const PORT = 3000;
+//const PORT = 3000;    remplacé par la ligne suivante pour permettre l'utilisation de la variable d'environnement
+const PORT = process.env.PORT || 3000;
+ 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -37,5 +39,6 @@ app.post("/api/messages", (req, res) => {
 
 // Démarrage du serveur
 app.listen(PORT, () => {
-  console.log(`Serveur démarré sur http://localhost:${PORT}`);
+  console.log(`Serveur démarré sur le port ${PORT}`);
+  //console.log(`Serveur démarré sur http://localhost:${PORT}`); remplacé par la ligne précédente pour permettre le déploiement sur des plateformes comme Render.com
 });
